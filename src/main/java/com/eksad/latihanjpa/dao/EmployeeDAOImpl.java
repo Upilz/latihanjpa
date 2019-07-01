@@ -53,7 +53,8 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	
 	@Override
 	public List<Employee> getByName(String name) {
-		return entitymanager.createQuery("SELECT e FROM Employee e WHERE e.name LIKE  ?0", Employee.class) //fungsi ?0 untuk masukin parameter ke 0
+		return entitymanager.createNativeQuery("SELECT * FROM employee WHERE name LIKE  ?0", Employee.class)
+		//return entitymanager.createQuery("SELECT e FROM Employee e WHERE e.name LIKE  ?0", Employee.class) //fungsi ?0 untuk masukin parameter ke 0
 		.setParameter(0,"%"+ name + "%")
 		.getResultList(); //why select e from nama table e, ini jpql, dimana kita memanggil suatu objek dari kelas kita (meng-query database)
 	
